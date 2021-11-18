@@ -3,6 +3,7 @@ const cors = require('cors');
 const routerApi = require('./routes');
 
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
+//const sequelizeErrorHandler = require('./middlewares/sequelizeErrorHandler');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -34,7 +35,6 @@ routerApi(app);
 app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
-
 
 app.listen(port, () => {
   console.log('Mi port' +  port);

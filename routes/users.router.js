@@ -9,20 +9,20 @@ const service = new UserService();
 
 router.get('/', async (req, res, next) => {
   try {
-    const categories = await service.find();
-    res.json(categories);
+    const users = await service.find();
+    res.json(users);
   } catch (error) {
     next(error);
   }
 });
 
 router.get('/:id',
-  validatorHandler(getUserSchema, 'params'),
+  validatorHandler(getUserSchema, 'params'),  
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const category = await service.findOne(id);
-      res.json(category);
+      const user = await service.findOne(id);
+      res.json(user);
     } catch (error) {
       next(error);
     }
@@ -34,8 +34,8 @@ router.post('/',
   async (req, res, next) => {
     try {
       const body = req.body;
-      const newCategory = await service.create(body);
-      res.status(201).json(newCategory);
+      const newUser = await service.create(body);
+      res.status(201).json(newUser);
     } catch (error) {
       next(error);
     }
@@ -44,13 +44,13 @@ router.post('/',
 
 router.patch('/:id',
   validatorHandler(getUserSchema, 'params'),
-  validatorHandler(updateUserSchema, 'body'),
+  validatorHandler(updateUserSchema, 'body'),  
   async (req, res, next) => {
     try {
       const { id } = req.params;
       const body = req.body;
-      const category = await service.update(id, body);
-      res.json(category);
+      const updateUser = await service.update(id, body);
+      res.json(updateUser);
     } catch (error) {
       next(error);
     }
