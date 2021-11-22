@@ -1,20 +1,14 @@
 const boom = require('@hapi/boom');
 //const getConnection = require('../libs/postgres');
 const { models } = require('../libs/sequelize');
-const sequelizeErrorHandler = require('../middlewares/sequelizeErrorHandler')
+
 
 class UserService {
   constructor() {}
 
   async create(data) {
-    try{
-      const newUser = await models.User.create(data);
-      return newUser;
-
-    }catch(error){
-      sequelizeErrorHandler(error,data);
-    }
-    
+    const newUser = await models.User.create(data);
+    return newUser;
   }
 
   async find() {
